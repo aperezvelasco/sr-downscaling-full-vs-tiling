@@ -47,9 +47,7 @@ for name, ds in datasets.items():
         lon=slice(lon_min, lon_max),
         time=slice("1985-01-01", "2020-12-31"),
     )
-    region_mean = (
-        region.resample(time="YS").mean().mean(dim=["lat", "lon"]).load()
-    )
+    region_mean = region.resample(time="YS").mean().mean(dim=["lat", "lon"]).load()
     processed[name] = region_mean
 
 # Find common time steps (years)
@@ -77,5 +75,9 @@ ax.legend(fontsize=12)
 ax.grid(True)
 
 plt.tight_layout()
-plt.savefig("/tmp/13.png", dpi=300, bbox_inches="tight",)
+plt.savefig(
+    "/tmp/13.png",
+    dpi=300,
+    bbox_inches="tight",
+)
 plt.close()

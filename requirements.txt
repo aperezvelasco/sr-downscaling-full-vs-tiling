@@ -6,3 +6,4 @@ netcdf4
 matplotlib
 cartopy
 xskillscore
+scikit-image

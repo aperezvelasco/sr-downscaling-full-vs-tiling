@@ -46,7 +46,6 @@ def compute_common_bounds(datasets):
     return lat_min, lat_max, lon_min, lon_max, time_min, time_max
 
 
-
 lat_min, lat_max, lon_min, lon_max, time_min, time_max = compute_common_bounds(
     {"ERA5": ds_era5, "CERRA": ds_cerra}
 )
