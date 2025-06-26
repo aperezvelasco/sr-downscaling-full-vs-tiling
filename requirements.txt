@@ -1,0 +1,8 @@
+numpy
+pandas
+xarray
+dask
+netcdf4
+matplotlib
+cartopy
+xskillscore

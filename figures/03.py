@@ -16,7 +16,6 @@ ERA5 patch (blue) of size (13, 13). On the right side, CERRA orography with the
 full domain divided into 40 equal-size tiles.
 
 Author: Antonio Pérez Velasco
-License: MIT
 Last modified: 2025-06-26
 """
 
