@@ -24,14 +24,8 @@ Last modified: 2025-06-26
 # Load input data (CERRA and ERA5 orography)
 # ------------------------------------------------------------------------------
 
-cerra_file_path = (
-    "/home/pereza/data/phd/project/super-resolution/data/cerra/orog/None/"
-    "orog_None_cerra_198501_0p05deg.nc"
-)
-era5_file_path = (
-    "/home/pereza/data/phd/project/super-resolution/data/era5/orog/None/"
-    "orog_None_era5_198501_0p25deg.nc"
-)
+cerra_file_path = "orog_None_cerra_198501_0p05deg.nc"
+era5_file_path = "orog_None_era5_198501_0p25deg.nc"
 
 cerra_ds = xr.open_dataset(cerra_file_path)
 era5_ds = xr.open_dataset(era5_file_path)
@@ -208,4 +202,4 @@ sm = plt.cm.ScalarMappable(cmap=cmap, norm=norm)
 fig.colorbar(sm, cax=cbar_ax, orientation="horizontal", label="Elevation (m)")
 
 plt.tight_layout()
-plt.savefig("/home/pereza/03.png", bbox_inches="tight")
+plt.savefig("/tmp/03.png", bbox_inches="tight")
