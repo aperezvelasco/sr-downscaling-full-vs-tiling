@@ -1,3 +1,4 @@
+import pandas as pd
 import xarray as xr
 import matplotlib.pyplot as plt
 import matplotlib.patches as mpatches
@@ -22,7 +23,7 @@ Date: 2025-06-26
 # -----------------------
 era5_path = "/home/pereza/data/phd/project/super-resolution/data/era5/t2m/None/*.nc"
 cerra_path = "/home/pereza/data/phd/project/super-resolution/data/cerra/t2m/None/*.nc"
-output_path = "/tmp/16.png"
+output_path = "/tmp/12.png"
 
 # -----------------------
 # Load datasets
@@ -40,9 +41,10 @@ def compute_common_bounds(datasets):
     lat_max = min(ds.lat.max().item() for ds in datasets.values())
     lon_min = max(ds.lon.min().item() for ds in datasets.values())
     lon_max = min(ds.lon.max().item() for ds in datasets.values())
-    time_min = max(ds.time.min().item() for ds in datasets.values())
-    time_max = min(ds.time.max().item() for ds in datasets.values())
+    time_min = max(pd.to_datetime(ds.time.min().values) for ds in datasets.values())
+    time_max = min(pd.to_datetime(ds.time.max().values) for ds in datasets.values())
     return lat_min, lat_max, lon_min, lon_max, time_min, time_max
+
 
 
 lat_min, lat_max, lon_min, lon_max, time_min, time_max = compute_common_bounds(
@@ -115,7 +117,6 @@ ax.set_title("")
 # Highlighted regions
 highlight_boxes = [
     {"lat": (41.6, 42.2), "lon": (1.6, 2.4), "color": "orange"},
-    {"lat": (38.0, 38.6), "lon": (-4.4, -3.7), "color": "green"},
 ]
 
 for box in highlight_boxes:
