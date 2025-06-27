@@ -200,9 +200,7 @@ for i, metric in enumerate(metrics):
             0.05,
         ]
     )
-    cbar_diff = fig.colorbar(
-        mappable_diff, cax=cbar_ax_diff, orientation="horizontal"
-    )
+    cbar_diff = fig.colorbar(mappable_diff, cax=cbar_ax_diff, orientation="horizontal")
     cbar_diff.set_ticks(np.linspace(diff_vmin, diff_vmax, 11)[::2])
     cbar_ax_diff.tick_params(labelsize=34)
     cbar_ax_diff.set_title(f"Difference in: {metric}", fontsize=34)
