@@ -100,8 +100,8 @@ for metric in metrics:
 
 fig, axs = plt.subplots(
     nrows=len(metrics),
-    ncols=len(metrics["Bias"]),
-    figsize=(len(metrics["Bias"]) * 10, len(metrics) * 12),
+    ncols=len(predictions),
+    figsize=(len(predictions) * 10, len(metrics) * 12),
     subplot_kw={"projection": ccrs.PlateCarree()},
 )
 

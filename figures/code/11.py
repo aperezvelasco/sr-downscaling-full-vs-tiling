@@ -6,12 +6,11 @@ import cartopy.crs as ccrs
 import cartopy.feature as cfeature
 
 """
-Script to generate Figure 9.
+Script to generate Figure 11.
 
-As Figure 8, but comparing the Swin2SR in the full-domain approach (Swin2SR (F))
-with the same model structure for the two patch-based implementations, using 
-non-overlapping tiles (Swin2SR (T)), and using overlapping patches (Swin2SR (P)), 
-in the second and third columns respectively.
+Spatial evaluation of the RMSE for a set of super-resolution models (DeepESD, UNet,
+and Swin2SR) compared to bicubic interpolation over the northeastern Spain region of 
+interest.
 
 Author: Antonio Pérez Velasco
 Last modified: 2025-06-26
@@ -23,18 +22,19 @@ Last modified: 2025-06-26
 
 main_dir = "/home/pereza/data/phd/project/super-resolution/predictions"
 target_path = "/home/pereza/data/phd/project/super-resolution/data/cerra/t2m/None"
-output_path = "/tmp/09.png"
+output_path = "/tmp/11.png"
 filename = "predictions.nc"
 varname = "t2m"
-baseline_method = "Swin2SR (F)"
-metrics_to_compute = ["Bias", "RMSE"]
+baseline_method = "Bicubic"
+metrics_to_compute = ["RMSE"]
+spatial_domain = (39.00, 43.00, -2.00, 3.50)
 
-spatial_domain = None
 
 predictions_paths = {
-    "Swin2SR (T)": f"{main_dir}/tiles/weighted-sampling/swin2sr-t",
-    "Swin2SR (P)": f"{main_dir}/tiles/weighted-sampling/swin2sr-p",
-    "Swin2SR (F)": f"{main_dir}/full-domain/swin2sr",
+    "Bicubic": f"{main_dir}/full-domain/bicubic",
+    "UNet": f"{main_dir}/full-domain/unet2d",
+    "DeepESD": f"{main_dir}/full-domain/deepesd",
+    "Swin2SR": f"{main_dir}/full-domain/swin2sr",
 }
 
 # ------------------------------------------------------------------------------
@@ -108,12 +108,10 @@ div_cmap = "bwr"
 seq_cmap = "OrRd"
 
 vmin_vmax_abs = {
-    "Bias": (-1, 1),
-    "RMSE": (0.5, 1.5),
+    "RMSE": (0.5, 3.0),
 }
 vmin_vmax_diff = {
-    "Bias": (-0.4, 0.4),
-    "RMSE": (-0.4, 0.4),
+    "RMSE": (-1.5, 1.5),
 }
 
 for i, metric in enumerate(metrics):
