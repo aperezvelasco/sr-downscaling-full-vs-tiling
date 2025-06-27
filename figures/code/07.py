@@ -132,7 +132,12 @@ for i, metric in enumerate(metrics):
         ax.add_feature(cfeature.BORDERS, linewidth=1)
         if spatial_domain is not None:
             ax.set_extent(
-                [spatial_domain[2], spatial_domain[3], spatial_domain[0], spatial_domain[1]],
+                [
+                    spatial_domain[2],
+                    spatial_domain[3],
+                    spatial_domain[0],
+                    spatial_domain[1],
+                ],
                 crs=ccrs.PlateCarree(),
             )
 

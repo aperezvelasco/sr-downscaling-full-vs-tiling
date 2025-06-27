@@ -105,11 +105,10 @@ dates_to_plot = ["2020-01-12T12:00:00", "2020-02-03T12:00:00", "2020-02-04T12:00
 
 for i in range(len(datasets)):
     datasets[i] = (
-        datasets[i].sel(
-            lat=slice(lat_min, lat_max), lon=slice(lon_min, lon_max)
-        ).sel(
-            time=dates_to_plot
-        ).load()
+        datasets[i]
+        .sel(lat=slice(lat_min, lat_max), lon=slice(lon_min, lon_max))
+        .sel(time=dates_to_plot)
+        .load()
     )
 
 (
@@ -176,4 +175,4 @@ cbar = fig.colorbar(mappable, cax=cbar_ax, orientation="horizontal")
 cbar.set_ticks(np.linspace(-3, 25, 29)[::2])
 
 plt.tight_layout()
-plt.savefig("/tmp/10.png",bbox_inches="tight")
+plt.savefig("/tmp/10.png", bbox_inches="tight")
